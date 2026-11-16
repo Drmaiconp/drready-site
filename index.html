@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Ready — Telemedicina 24h</title>
+<meta name="description" content="Dr. Ready: médicos nos EUA 24 horas por dia, no seu idioma. Telemedicina em português, inglês e espanhol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#007c9f; --teal-2:#0a93b9; --deep:#0b3443; --deep-2:#14495c; --ink:#12303b;
+  --ice:#f2f8fa; --mist:#e6f3f7; --cta:#d4eff7; --line:#cfe3ea; --red:#ff1a1a; --muted:#4d6670;
+  --r-lg:28px; --r-md:20px; --shadow:0 18px 50px -24px rgba(11,52,67,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+section{scroll-margin-top:90px}
+h1,h2,h3{font-weight:500;letter-spacing:-.02em;line-height:1.1}
+h2{font-size:clamp(2rem,4.2vw,3.3rem)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;border-radius:999px;padding:.95em 2em;font:inherit;font-weight:500;font-size:1rem;cursor:pointer;border:2px solid transparent;transition:transform .15s,background .2s,box-shadow .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-cta{background:var(--cta);color:var(--deep);border-color:var(--deep)}
+.btn-cta:hover{background:#c0e8f3}
+.btn-dark{background:var(--deep);color:#fff}
+.btn-dark:hover{background:var(--deep-2)}
+.btn-ghost{border-color:#fff;color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-white{background:#fff;color:var(--deep)}
+.dot{display:inline-block;width:.42em;height:.42em;border-radius:50%;background:var(--red);vertical-align:.08em;margin-left:.08em}
+
+/* top bar */
+.topbar{background:var(--deep);color:#dbeef4;font-size:.85rem}
+.topbar .wrap{display:flex;align-items:center;justify-content:center;gap:1.2rem;padding:.55rem 0;flex-wrap:wrap}
+.lang{position:relative}
+.lang-btn{display:flex;align-items:center;gap:.5em;background:#fff;color:var(--deep);border:0;border-radius:999px;padding:.4em 1em;font:inherit;font-weight:500;cursor:pointer}
+.lang-menu{position:absolute;right:0;top:calc(100% + 6px);background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;min-width:170px;display:none;z-index:60}
+.lang-menu.open{display:block}
+.lang-menu button{display:flex;gap:.6em;align-items:center;width:100%;padding:.7em 1em;border:0;background:#fff;font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+.lang-menu button:hover,.lang-menu button[aria-current="true"]{background:var(--mist)}
+.flag{width:22px;height:15px;border-radius:3px;overflow:hidden;flex:none}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid #eef3f5}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{color:var(--teal);width:150px}
+.nav ul{display:flex;gap:1.6rem;list-style:none;font-size:.98rem}
+.nav ul a{position:relative;padding:.3em 0}
+.nav ul a:hover{color:var(--teal)}
+.nav ul a.login{color:var(--teal);font-weight:600}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--deep)}
+@media (max-width:1100px){
+  .nav ul{position:fixed;inset:78px 0 auto 0;background:#fff;flex-direction:column;gap:0;padding:.5rem 4vw 1.2rem;box-shadow:var(--shadow);display:none}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:.85em 0;border-bottom:1px solid #eef3f5}
+  .burger{display:block}
+}
+
+/* hero */
+.hero{position:relative;min-height:640px;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:
+  radial-gradient(900px 500px at 85% 20%,rgba(10,147,185,.55),transparent 60%),
+  radial-gradient(700px 500px at 10% 100%,rgba(0,124,159,.5),transparent 60%),
+  linear-gradient(135deg,#0b3443 0%,#0d4558 55%,#0a5a72 100%)}
+.hero .art{position:absolute;right:4vw;top:60px;width:min(430px,38vw)}
+.hero .wrap{position:relative;padding:110px 0 80px}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.6rem);max-width:15ch;margin-bottom:1.4rem}
+.hero p{font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:60ch;opacity:.92;margin-bottom:2rem}
+.hero .ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.phone{background:#0e2a35;border-radius:38px;padding:12px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12)}
+.phone .screen{background:linear-gradient(160deg,#1a5f75,#0b3443);border-radius:28px;aspect-ratio:9/16;position:relative;overflow:hidden;padding:22px}
+.doc-avatar{width:100%;aspect-ratio:1;border-radius:22px;background:linear-gradient(180deg,#d6eef5,#9fd3e3);display:grid;place-items:center}
+.pip{position:absolute;right:22px;top:46%;width:34%;aspect-ratio:3/4;border-radius:16px;background:linear-gradient(180deg,#f3e7dd,#e2c9b4);border:3px solid #0e2a35;display:grid;place-items:center}
+.call-bar{position:absolute;left:22px;right:22px;bottom:22px;display:flex;justify-content:center;gap:14px}
+.call-bar span{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.call-bar span.end{background:var(--red)}
+.live{position:absolute;left:22px;top:22px;margin:10px;background:rgba(11,52,67,.75);color:#fff;font-size:.75rem;padding:.3em .8em;border-radius:99px;display:flex;align-items:center;gap:.4em}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--red)}
+@media (max-width:860px){.hero .art{display:none}.hero{min-height:560px}}
+
+/* about */
+.about{background:var(--ice);padding:110px 0}
+.grid-2{display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center}
+.grid-2>*{min-width:0}
+@media (max-width:600px){.btn{white-space:normal;text-align:center}}
+@media (max-width:900px){.grid-2{grid-template-columns:1fr;gap:2.5rem}}
+.about h2{margin-bottom:1.5rem;color:var(--deep)}
+.about p{font-size:1.12rem;margin-bottom:1.1rem;color:#24414c}
+.chips-card{background:var(--deep);border-radius:var(--r-lg);padding:44px 0 40px;overflow:hidden;position:relative}
+.avatars{display:flex;gap:22px;padding:0 44px;margin-bottom:28px}
+.avatars>div{width:120px;aspect-ratio:1;border-radius:18px;display:grid;place-items:center}
+.search-pill{margin:0 44px 22px;border:2px solid rgba(255,255,255,.35);border-radius:999px;color:#fff;padding:.8em .8em .8em 1.6em;display:flex;align-items:center;justify-content:space-between;font-size:1.15rem}
+.search-pill b{width:42px;height:42px;border-radius:50%;background:var(--cta);display:grid;place-items:center;flex:none}
+.chip{background:var(--cta);color:var(--deep);border-radius:999px;font-size:clamp(1.05rem,1.9vw,1.6rem);font-weight:500;padding:.6em 1.2em;margin:0 0 16px;text-align:center;white-space:nowrap}
+.chip:nth-of-type(1){margin-left:24px;margin-right:24px}
+.chip:nth-of-type(2){margin-left:-10px;margin-right:60px}
+.chip:nth-of-type(3){margin-left:60px;margin-right:-10px}
+.checks{background:#fff;border-radius:var(--r-lg);margin-top:80px;padding:56px 70px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media (max-width:900px){.checks{grid-template-columns:1fr;padding:36px 26px}}
+.checks ul{list-style:none}
+.checks li{display:flex;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1.5px solid var(--deep);font-size:1.3rem}
+.checks li:last-child{border:0}
+.badge{width:30px;height:30px;flex:none}
+.border-card{background:linear-gradient(150deg,#0e4a5e,#0b3443);border-radius:var(--r-md);color:#fff;padding:44px;position:relative}
+.border-card h3{font-style:italic;font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:1rem}
+.about .border-card p{color:#d3e9f0;opacity:1}
+.border-card .mini{width:110px;height:30px;color:#fff;margin-bottom:1.4rem}
+
+/* services */
+.services{padding:120px 0;text-align:center}
+.services h2{margin-bottom:1.6rem}
+.services .lead{font-size:1.2rem;max-width:62ch;margin:0 auto 4rem}
+.cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;text-align:left;margin-bottom:3.5rem}
+@media (max-width:1000px){.cards-4{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.cards-4{grid-template-columns:1fr}}
+.svc{background:var(--ice);border-radius:var(--r-md);padding:34px 32px 40px}
+.svc .ic{width:62px;height:62px;border-radius:50%;background:var(--deep);display:grid;place-items:center;margin-bottom:2.2rem;color:#9fe0f1}
+.svc h3{font-size:1.65rem;margin-bottom:1rem}
+.svc p{font-size:1.05rem;color:#2c4752;margin-bottom:.8rem}
+
+/* steps */
+.steps-sec{border-top:14px solid var(--deep);padding:110px 0 90px}
+.steps-sec h2{text-align:center;max-width:22ch;margin:0 auto 4rem;color:var(--deep)}
+.steps{list-style:none;position:relative;margin-bottom:2.5rem}
+.steps li{display:flex;gap:1.2rem;padding-bottom:2.2rem;position:relative;font-size:1.15rem}
+.steps li::before{content:"";position:absolute;left:17px;top:38px;bottom:0;width:2px;background:#d5e1e5}
+.steps li:last-child::before{bottom:-30px}
+.steps .n{width:36px;height:36px;border-radius:50%;border:2px solid #c7d6db;display:grid;place-items:center;flex:none;background:#fff;font-weight:600;position:relative;z-index:1}
+.steps li:first-child .n{background:var(--deep);color:#fff;border-color:var(--deep)}
+.steps-note{font-size:.98rem;color:#2c4752;margin-bottom:2rem}
+.pills-box{background:#f3fafc;border-radius:6px;aspect-ratio:1;display:grid;place-items:center;position:relative;overflow:hidden}
+.pills-box::before,.pills-box::after{content:"";position:absolute;border-radius:50%;border:2px solid #cfe9f1}
+.pills-box::before{width:92%;height:92%}.pills-box::after{width:68%;height:68%}
+.pills{position:relative;z-index:1;display:flex;flex-direction:column;gap:1.4rem;width:76%}
+.pill{background:#fff;border-radius:999px;box-shadow:0 14px 30px -14px rgba(11,52,67,.3);padding:.9em 1.4em;font-size:clamp(1.2rem,2.2vw,2rem);font-weight:600;color:var(--deep);display:flex;align-items:center;justify-content:center;gap:.6em}
+.pill svg{width:1.1em;height:1.1em}
+
+/* in-person */
+.inperson{background:#f7fafb;border:1px solid #e3edf0;border-radius:var(--r-lg);padding:60px 70px;margin-top:80px;display:grid;grid-template-columns:1.15fr 1fr;gap:3rem}
+@media (max-width:950px){.inperson{grid-template-columns:1fr;padding:36px 24px}}
+.steps-sec .inperson h2{text-align:left;margin:0 0 1.4rem;max-width:none}
+.inperson h2 em{font-style:normal;color:var(--teal)}
+.inperson p{font-size:1.15rem;color:#4b6670;margin-bottom:2rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat{border:1px solid #dbe7eb;border-radius:var(--r-md);padding:26px;background:#fff}
+.stat.dark{background:var(--deep);color:#fff;border-color:var(--deep)}
+.stat b{font-size:2.6rem;font-weight:600;line-height:1;display:block;margin-bottom:.6rem}
+.stat.dark b{color:#8fdcf0}
+.stat b small{font-size:1.1rem;font-weight:500;margin-left:.25em}
+.stat span{font-size:.98rem;color:#62808a}
+.stat.dark span{color:#d4e9ef}
+.partner{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;font-size:.95rem;border-top:1px solid #e3edf0;padding-top:1.6rem}
+.partner small{display:block;font-size:.72rem;letter-spacing:.12em;color:#62808a}
+.partner b{font-size:1.35rem;letter-spacing:.06em;color:var(--deep)}
+
+/* profiles */
+.profiles{padding:110px 0 0}
+.profiles .head{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;margin-bottom:3.5rem;align-items:start}
+.profiles .head p{text-align:right;font-size:1.2rem}
+@media (max-width:900px){.profiles .head{grid-template-columns:1fr}.profiles .head p{text-align:left}}
+.prof-band{background:var(--ice);padding:40px 0 70px;text-align:center}
+.prof-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:1.4rem;margin-bottom:3rem;text-align:left}
+@media (max-width:900px){.prof-grid{grid-template-columns:1fr}}
+.prof{border-radius:var(--r-md);min-height:430px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;padding:34px;position:relative;overflow:hidden}
+.prof h3{font-size:2rem;margin-bottom:.4rem}
+.prof p{opacity:.92;font-size:1.05rem;max-width:40ch}
+.prof .illus{position:absolute;inset:0;opacity:.95}
+.prof>*:not(.illus){position:relative}
+.prof.p1{background:linear-gradient(170deg,#3a8ea6,#0b3443 85%)}
+.prof.p2{background:linear-gradient(170deg,#5aa9bd,#123f50 85%)}
+.prof.p3{background:linear-gradient(170deg,#2a6b80,#071f29 85%)}
+
+/* plans */
+.plans{background:linear-gradient(180deg,#0b3443,#2b5a6b);color:#fff;padding:110px 0}
+.plans h2{text-align:center;margin-bottom:4rem}
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;align-items:start}
+@media (max-width:1100px){.plan-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.plan-grid{grid-template-columns:1fr}}
+.plan{border:3px solid rgba(255,255,255,.18);background:rgba(11,52,67,.6);border-radius:var(--r-lg);padding:38px 30px;display:flex;flex-direction:column;height:100%}
+.plan.biz{background:var(--cta);color:var(--deep);border-color:var(--cta)}
+.plan .pi{width:46px;height:46px;margin-bottom:2rem}
+.plan h3{font-size:2rem;margin-bottom:1.2rem}
+.plan .price{font-size:2.4rem;font-weight:500;margin-bottom:1.5rem}
+.plan .price small{font-size:1rem;opacity:.75}
+.plan ul{list-style:none;flex:1;margin-bottom:2rem}
+.plan li{display:flex;gap:.9rem;padding:.5rem 0;font-size:1.02rem;line-height:1.3}
+.plan li::before{content:"↗";font-weight:700;flex:none;font-size:1.1rem}
+.plan{min-width:0}.plan .btn{width:100%;white-space:normal;text-align:center}
+
+/* specialties */
+.spec{padding:110px 0}
+.spec h2{margin-bottom:1rem}
+.spec .lead{font-size:1.15rem;color:var(--muted);margin-bottom:3rem;max-width:60ch}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.sp{border:1px solid var(--line);border-radius:var(--r-md);padding:22px 24px;display:flex;align-items:center;gap:1rem;font-size:1.1rem;font-weight:500;background:#fff;transition:border-color .2s}
+.sp:hover{border-color:var(--teal)}
+.sp i{width:42px;height:42px;border-radius:50%;background:var(--mist);color:var(--teal);display:grid;place-items:center;flex:none;font-style:normal;font-weight:700}
+.sp.gp{background:var(--deep);color:#fff;border-color:var(--deep)}
+.sp.gp i{background:var(--teal);color:#fff}
+
+/* patient */
+.patient{padding:100px 0;background:var(--ice)}
+.patient h2{font-weight:700;color:var(--deep);margin-bottom:1.4rem;font-size:clamp(2rem,3.4vw,2.8rem)}
+.patient p{font-size:1.2rem;color:#2c4752;margin-bottom:2rem}
+.patient ul{list-style:none;margin-bottom:2.4rem}
+.patient li{display:flex;gap:1.1rem;align-items:flex-start;padding:.45rem 0;font-size:1.15rem}
+.patient li svg{width:26px;height:26px;flex:none;margin-top:2px}
+.patient .btns{display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem}
+.win{background:var(--deep);border-radius:16px;padding:14px}
+.win .bar{display:flex;gap:6px;margin-bottom:10px}
+.win .bar i{width:10px;height:10px;border-radius:50%}
+.win .vid{border-radius:8px;aspect-ratio:16/9;background:linear-gradient(160deg,#e3f2f6,#a9d7e5);position:relative;display:grid;place-items:center;overflow:hidden}
+.win .vid .pip{top:auto;bottom:14px;right:14px;width:22%;aspect-ratio:3/4;border-width:2px}
+
+/* faq */
+.faq{background:linear-gradient(180deg,#0b3443,#3e6578);color:#fff;padding:100px 0}
+.faq h2{margin-bottom:3rem}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 5rem}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+details{border-bottom:1.5px dashed rgba(255,255,255,.35)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1.5rem;padding:1.3rem 0;font-size:1.18rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"▾";transition:transform .2s;flex:none}
+details[open] summary::after{transform:rotate(180deg)}
+details p{padding:0 0 1.4rem;color:#d6e8ee;font-size:1.04rem}
+
+/* help */
+.help{padding:90px 0 40px;position:relative}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+@media (max-width:800px){.help-grid{grid-template-columns:1fr}}
+.help-card{background:#f5f9fa;border-radius:var(--r-lg);padding:56px 40px}
+.help-card h3{font-size:2rem;margin-bottom:.8rem}
+.help-card p{font-size:1.15rem;margin-bottom:1.8rem;color:#24414c}
+.help .glow{height:90px;margin-top:-30px;background:radial-gradient(60% 100% at 40% 0%,rgba(0,124,159,.18),transparent 70%)}
+
+/* app */
+.app{padding:60px 0 20px}
+.app-card{background:linear-gradient(120deg,var(--teal),#0b5d78);color:#fff;border-radius:var(--r-lg);padding:56px;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.app-card h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:.6rem}
+.app-card p{opacity:.9;font-size:1.1rem;max-width:46ch}
+.stores{display:flex;gap:1rem;flex-wrap:wrap}
+.store{display:flex;align-items:center;gap:.7rem;background:#071f29;color:#fff;border-radius:14px;padding:.75em 1.3em;min-width:190px}
+.store small{display:block;font-size:.72rem;opacity:.75;line-height:1}
+.store b{font-size:1.15rem;font-weight:600;line-height:1.2}
+
+/* work */
+.work{padding:100px 0 120px}
+.work h2{font-size:clamp(2.4rem,4.6vw,3.8rem);margin-bottom:1.2rem}
+.work .lead{font-size:1.25rem;color:#2c4752;margin-bottom:3rem}
+form.card{background:#f5f9fa;border:1.5px solid #d6e9ee;border-radius:var(--r-lg);padding:56px 64px;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 1.8rem}
+@media (max-width:760px){form.card{grid-template-columns:1fr;padding:32px 22px}}
+.field{display:flex;flex-direction:column;gap:.6rem}
+.field.full{grid-column:1/-1}
+.field label{font-weight:700;color:var(--deep)}
+.field label .req{color:var(--red);margin-left:.3em}
+.field input,.field select,.field textarea{font:inherit;font-size:1.05rem;border:1.5px solid #cfdfe4;border-radius:12px;padding:1em 1.1em;background:#fff;color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.field textarea{min-height:170px;resize:vertical}
+.consent{grid-column:1/-1;display:flex;gap:.7rem;align-items:center;font-weight:600;color:var(--deep)}
+.consent input{width:20px;height:20px;accent-color:var(--teal)}
+.form-msg{grid-column:1/-1;border-radius:12px;padding:1em 1.2em;display:none;font-weight:500}
+.form-msg.ok{display:block;background:#e3f6ec;color:#155d3a}
+.form-msg.err{display:block;background:#fde8e8;color:#8c1d1d}
+
+/* footer */
+footer{background:radial-gradient(800px 300px at 90% 100%,rgba(0,124,159,.45),transparent 70%),radial-gradient(600px 300px at 0% 100%,rgba(70,120,150,.4),transparent 70%),#0f3a4a;color:#fff;padding:90px 0 50px}
+.foot{display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.foot .logo{width:220px;color:#fff;margin-bottom:2rem}
+.contact li{display:flex;gap:.9rem;align-items:center;font-size:1.15rem;margin-bottom:1rem;list-style:none}
+.contact svg{width:26px;height:26px;color:#8fdcf0;flex:none}
+.socials{display:flex;gap:.6rem;margin-top:2.4rem}
+.socials a{width:58px;height:58px;border-radius:6px;display:grid;place-items:center}
+.socials svg{width:30px;height:30px}
+.foot nav ul{list-style:none}
+.foot nav a{display:block;font-size:1.15rem;padding:.5rem 0;opacity:.95}
+.foot nav a:hover{color:#8fdcf0}
+.legal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;font-size:1rem;opacity:.9}
+.legal a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- Logo Dr. Ready (cor via currentColor, ponto vermelho fixo) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="234 444 530 130">
+    <g fill="currentColor">
+      <path d="M237.5,450.9h30.7c30.5,0,51.1,18.9,51.1,45.3s-22,46.8-51.1,46.8h-30.7v-92.1ZM257.2,465.1v64.1h9.7c19.3,0,32-12.5,32-32.4s-12.5-31.7-32-31.7h-9.7Z"/>
+      <path d="M327.8,478.9l18.4-2.8v17.2c3.8-12.6,10.9-18.2,18.2-18.2s4.6.4,5.8.9l1.2,15.9c-2.2-.9-5.8-1.4-9.1-1.4-6.8,0-11.8,4.1-16.1,10.9v41.5h-18.4v-64.1Z"/>
+      <path d="M411,450h32.6c21.7,0,34.5,10.7,34.5,27.1s-7,20.1-17.5,24.7l8.4,13.8c3.900,6.3,13,21.1,16.3,26.5h-21.2l-22.4-36.7h-11.3v36.7h-19.5v-92.1ZM430.5,464.1v27.5h12c9.900,0,16.4-4.900,16.4-13.8s-6.3-13.7-16.2-13.7h-12.2Z"/>
+      <path d="M482.9,509.1c0-18.2,11.6-34.6,31.6-34.6s31.3,13.8,30.9,38.2h-44c1.4,12.4,8.7,18.9,19.5,18.9s14.9-2.9,21.2-6.7l-1.4,12.5c-5.8,3.8-15,6.2-23.4,6.2-20.8,0-34.3-14.9-34.3-34.5ZM501.6,501.3h26.7c-1.4-9.6-6.7-14.6-13.7-14.6s-11.7,5.4-13,14.6Z"/>
+      <path d="M550,525.4c0-10.3,6.6-17.1,22.2-19.7l18-3v-3c0-9.2-5.1-12.6-13.3-12.6s-13.9,2.4-22.4,6.8l1.8-13.8c6.6-3,15.5-5.4,24.2-5.4,18.2,0,27.8,9.1,27.8,25.4v42.1h-18.2v-12.1c-4.3,7.5-12.2,13.6-21.3,13.6s-18.9-7.8-18.9-18.2ZM575.8,531.6c5.9,0,11.4-4.5,14.5-8.8v-10.3l-14.7,3.2c-5.1,1.2-7.8,4.5-7.8,8.7s3,7.2,8,7.2Z"/>
+      <path d="M614.6,509.5c0-20.7,13-35,29.1-35s12.6,2.5,17,7.8v-33l18.4-2.6v95.5h-18.4v-9.9c-4.1,7-11.3,11.3-19.3,11.3-15,0-26.7-13.2-26.7-34.1ZM647.9,531.2c4.9,0,9.3-2.4,12.8-7v-30.9c-3-3.8-7.2-6.2-11.8-6.2-9.2,0-15.8,8.3-15.8,22.2s6.2,21.8,14.9,21.8Z"/>
+      <path d="M692.1,567.7l-1.4-13.8c3,1.3,5.7,2.2,9.3,2.2,5.5,0,8.6-3,11.7-9.7l2.5-5.3-16.7-39.3c-3.2-7.4-8-19.2-10.8-25.8h19.5c2.4,6.1,6.3,16.4,9.2,23.6l8.4,21.2,8.6-21.2c2.9-7.1,7-17.6,9.2-23.6h16.3c-2.9,6.6-7.9,18.4-11.1,25.8l-21.1,49c-5.5,12.8-13.7,18.8-24.7,18.8s-6.4-.8-8.9-1.8Z"/>
+    </g>
+    <circle fill="#ff0000" cx="379.8" cy="525.8" r="14.9"/>
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#007c9f"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="seal" viewBox="0 0 24 24"><path fill="#0b3443" d="M12 1l2.6 2.2 3.4-.4.9 3.3 3 1.6-1.2 3.2 1.2 3.2-3 1.6-.9 3.3-3.4-.4L12 23l-2.6-2.2-3.4.4-.9-3.3-3-1.6 1.2-3.2-1.2-3.2 3-1.6.9-3.3 3.4.4z"/><path d="M8 12.3l2.6 2.6L16 9.6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="person" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="7.5" r="4"/><path d="M4 21c.8-4.2 4-6.5 8-6.5s7.2 2.3 8 6.5"/></g></symbol>
+  <symbol id="personplus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c.8-4.2 3.8-6.5 7.5-6.5s6.7 2.3 7.5 6.5M19 3v6M16 6h6"/></g></symbol>
+  <symbol id="people" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.8 3.2-6 6.5-6s5.9 2.2 6.5 6"/><circle cx="16.5" cy="7" r="3"/><path d="M17 13.2c2.6.3 4.2 2.4 4.6 5.8"/></g></symbol>
+  <symbol id="globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3 3.8 6.2 3.8 9.5S15 18.5 12 21.5M12 2.5C9 5.5 8.2 8.7 8.2 12S9 18.5 12 21.5"/></g></symbol>
+  <symbol id="doc" viewBox="0 0 100 100"><circle cx="50" cy="38" r="17" fill="#f2d3bd"/><path d="M33 33c0-12 8-19 17-19s17 7 17 19c-4-6-10-9-17-9s-13 3-17 9z" fill="#2c2420"/><path d="M18 100c2-22 15-34 32-34s30 12 32 34z" fill="#fff"/><path d="M42 66l8 14 8-14" fill="#9fd3e3"/><path d="M36 70c-2 8 0 16 6 20" stroke="#0b3443" stroke-width="2.5" fill="none"/><circle cx="42" cy="91" r="3.5" fill="#0b3443"/></symbol>
+  <symbol id="docf" viewBox="0 0 100 100"><path d="M30 46c0-20 9-32 20-32s20 12 20 32c0 10-4 20-4 20H34s-4-10-4-20z" fill="#5a3a2a"/><circle cx="50" cy="40" r="16" fill="#f4d8c4"/><path d="M18 100c2-22 15-34 32-34s30 12 32 34z" fill="#fff"/><path d="M43 66l7 12 7-12" fill="#9fd3e3"/></symbol>
+  <symbol id="pat" viewBox="0 0 100 100"><circle cx="50" cy="40" r="17" fill="#e9c3a7"/><path d="M31 38c0-14 8-22 19-22s19 8 19 22c-3-5-6-8-8-9-5 3-14 5-24 3-2 2-4 4-6 6z" fill="#3b2a22"/><path d="M16 100c2-22 16-33 34-33s32 11 34 33z" fill="#3a8ea6"/></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-i="topbar"></span>
+    <div class="lang">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false"><span class="flag" id="curFlag"></span><span id="curLang">Português</span> ▾</button>
+      <div class="lang-menu" id="langMenu" role="menu"></div>
+    </div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#home" aria-label="Dr. Ready"><svg class="logo"><use href="#logo"/></svg></a>
+    <button class="burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <ul id="menu">
+      <li><a href="#home" data-i="nav_home"></a></li>
+      <li><a href="#about" data-i="nav_about"></a></li>
+      <li><a href="#plans" data-i="nav_plans"></a></li>
+      <li><a href="#specialties" data-i="nav_spec"></a></li>
+      <li><a href="#patient" data-i="nav_patient"></a></li>
+      <li><a href="#help" data-i="nav_help"></a></li>
+      <li><a href="#work" data-i="nav_work"></a></li>
+      <li><a href="#app" data-i="nav_app"></a></li>
+      <li><a href="#" class="login" data-link="login" data-i="nav_login"></a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="art" aria-hidden="true">
+    <div class="phone"><div class="screen">
+      <div class="doc-avatar"><svg width="78%" height="78%"><use href="#doc"/></svg></div>
+      <span class="live"><i></i><span data-i="hero_live"></span></span>
+      <div class="pip"><svg width="90%" height="90%"><use href="#pat"/></svg></div>
+      <div class="call-bar"><span><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="end"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 14c5-4.5 13-4.5 18 0l-2.5 2.5-3-1.5v-2.5a10 10 0 0 0-7 0V15l-3 1.5z" fill="#fff"/></svg></span><span><svg width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="7" width="12" height="10" rx="2" stroke="#fff" stroke-width="2" fill="none"/><path d="M15 11l6-3v8l-6-3" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></span></div>
+    </div></div>
+  </div>
+  <div class="wrap">
+    <h1 data-i="hero_title"></h1>
+    <p data-i="hero_sub"></p>
+    <div class="ctas">
+      <a class="btn btn-cta" href="#" data-link="subscribe" data-i="btn_subscribe"></a>
+      <a class="btn btn-ghost" href="#" data-link="whatsapp" data-i="btn_help_sign"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="grid-2">
+      <div>
+        <h2 data-i="about_title"></h2>
+        <p data-i="about_p1"></p>
+        <p data-i="about_p2"></p>
+        <p data-i="about_p3"></p>
+        <p data-i="about_p4"></p>
+      </div>
+      <div class="chips-card" aria-hidden="true">
+        <div class="avatars">
+          <div style="background:linear-gradient(180deg,#eaf5f8,#bfe2ec)"><svg width="88%" height="88%"><use href="#docf"/></svg></div>
+          <div style="background:linear-gradient(180deg,#eaf5f8,#bfe2ec);margin-top:40px"><svg width="88%" height="88%"><use href="#doc"/></svg></div>
+          <div style="background:#082a36;margin-top:20px;color:#fff"><svg width="70%" height="70%" viewBox="365 505 30 42"><circle fill="#ff0000" cx="379.8" cy="525.8" r="14.9"/></svg></div>
+        </div>
+        <div class="search-pill"><span data-i="chip_search"></span><b><svg width="18" height="18" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" stroke="#0b3443" stroke-width="2.4" fill="none"/><path d="M15.5 15.5L21 21" stroke="#0b3443" stroke-width="2.4" stroke-linecap="round"/></svg></b></div>
+        <div class="chip" data-i="chip1"></div>
+        <div class="chip" data-i="chip2"></div>
+        <div class="chip" data-i="chip3"></div>
+      </div>
+    </div>
+
+    <div class="checks">
+      <ul id="checkList"></ul>
+      <div class="border-card">
+        <svg class="mini"><use href="#logo" style="color:#fff"/></svg>
+        <h3 data-i="border_title"></h3>
+        <p data-i="border_text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="wrap">
+    <h2 data-i="svc_title"></h2>
+    <p class="lead" data-i="svc_lead"></p>
+    <div class="cards-4">
+      <div class="svc"><div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-5 3 9 2-4h2"/><path d="M17.5 21s-4-2.6-4-5.3a2.2 2.2 0 0 1 4-1.2 2.2 2.2 0 0 1 4 1.2c0 2.7-4 5.3-4 5.3z"/></svg></div><h3 data-i="svc1_t"></h3><p data-i="svc1_d"></p></div>
+      <div class="svc"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18" /><path d="M7 2v4M17 2v4"/></svg></div><h3 data-i="svc2_t"></h3><p data-i="svc2_d"></p></div>
+      <div class="svc"><div class="ic"><svg width="28" height="28"><use href="#globe"/></svg></div><h3 data-i="svc3_t"></h3><p data-i="svc3_d1"></p><p data-i="svc3_d2"></p></div>
+      <div class="svc"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg></div><h3 data-i="svc4_t"></h3><p data-i="svc4_d"></p></div>
+    </div>
+    <a class="btn btn-dark" href="#plans" data-i="btn_programs"></a>
+  </div>
+</section>
+
+<!-- STEPS + IN-PERSON -->
+<section class="steps-sec">
+  <div class="wrap">
+    <h2 data-i="steps_title"></h2>
+    <div class="grid-2">
+      <div>
+        <ol class="steps">
+          <li><span class="n">1</span><span data-i="step1"></span></li>
+          <li><span class="n">2</span><span data-i="step2"></span></li>
+          <li><span class="n">3</span><span data-i="step3"></span></li>
+        </ol>
+        <p class="steps-note" data-i="steps_note"></p>
+        <a class="btn btn-dark" href="#plans" data-i="btn_start"></a>
+      </div>
+      <div class="pills-box" aria-hidden="true">
+        <div class="pills">
+          <div class="pill"><svg><use href="#person"/></svg><span data-i="plan_ind"></span></div>
+          <div class="pill"><svg><use href="#people"/></svg><span data-i="plan_fam"></span></div>
+          <div class="pill"><svg><use href="#globe"/></svg><span data-i="plan_biz"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inperson">
+      <div>
+        <h2 data-i="inp_title"></h2>
+        <p data-i="inp_text"></p>
+        <div class="partner">
+          <div style="display:flex;gap:.8rem;align-items:center">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0b3443" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M7 12h2.5l1.5-3 2 6 1.5-3H17"/></svg>
+            <div><small data-i="inp_partner"></small><b>UNITY</b></div>
+          </div>
+          <div style="display:flex;gap:.6rem;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007c9f" stroke-width="2"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span>8956 Turkey Lake Rd, 950B<br>Orlando, FL</span></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat dark"><b>20%<small>OFF</small></b><span data-i="st1"></span></div>
+        <div class="stat"><b>US$ 50</b><span data-i="st2"></span></div>
+        <div class="stat"><b>3<small data-i="st3_u"></small></b><span data-i="st3"></span></div>
+        <div class="stat"><b>4<small data-i="st4_u"></small></b><span data-i="st4"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILES -->
+<section class="profiles">
+  <div class="wrap head">
+    <h2 data-i="prof_title"></h2>
+    <p data-i="prof_side"></p>
+  </div>
+  <div class="prof-band">
+    <div class="wrap">
+      <div class="prof-grid">
+        <div class="prof p1">
+          <svg class="illus" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="300" cy="60" r="120" fill="#ffffff10"/><rect x="40" y="120" width="190" height="120" rx="12" fill="#0b3443" opacity=".55"/><rect x="52" y="132" width="166" height="96" rx="6" fill="#bfe2ec" opacity=".8"/><use href="#doc" x="95" y="135" width="80" height="90"/></svg>
+          <h3 data-i="prof1_t"></h3><p data-i="prof1_d"></p>
+        </div>
+        <div class="prof p2">
+          <svg class="illus" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="40" cy="80" r="120" fill="#ffffff12"/><use href="#pat" x="40" y="60" width="120" height="140"/><use href="#docf" x="140" y="70" width="120" height="130"/></svg>
+          <h3 data-i="prof2_t"></h3><p data-i="prof2_d"></p>
+        </div>
+        <div class="prof p3">
+          <svg class="illus" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="60" y="90" width="200" height="130" rx="10" fill="#0b2530"/><rect x="70" y="100" width="180" height="104" rx="4" fill="#d9eef4"/><use href="#doc" x="115" y="102" width="90" height="102"/><rect x="40" y="220" width="240" height="10" rx="5" fill="#0b2530"/></svg>
+          <h3 data-i="prof3_t"></h3><p data-i="prof3_d"></p>
+        </div>
+      </div>
+      <a class="btn btn-dark" href="#plans" data-i="btn_subscribe2"></a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans" id="plans">
+  <div class="wrap">
+    <h2 data-i="plans_title"></h2>
+    <div class="plan-grid" id="planGrid"></div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section class="spec" id="specialties">
+  <div class="wrap">
+    <h2 data-i="spec_title"></h2>
+    <p class="lead" data-i="spec_lead"></p>
+    <div class="spec-grid" id="specGrid"></div>
+  </div>
+</section>
+
+<!-- PATIENT AREA -->
+<section class="patient" id="patient">
+  <div class="wrap grid-2">
+    <div>
+      <h2 data-i="pa_title"></h2>
+      <p data-i="pa_text"></p>
+      <ul id="paList"></ul>
+      <div class="btns">
+        <a class="btn btn-dark" href="#" data-link="specialist" data-i="btn_specialist"></a>
+        <a class="btn btn-dark" href="#" data-link="consult" data-i="btn_consult"></a>
+      </div>
+    </div>
+    <div class="win" aria-hidden="true">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+      <div class="vid"><svg width="48%" height="96%"><use href="#doc"/></svg><div class="pip"><svg width="90%" height="90%"><use href="#pat"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2 data-i="faq_title"></h2>
+    <div class="faq-grid"><div id="faqA"></div><div id="faqB"></div></div>
+  </div>
+</section>
+
+<!-- HELP -->
+<section class="help" id="help">
+  <div class="wrap help-grid">
+    <div class="help-card"><h3 data-i="help1_t"></h3><p data-i="help1_d"></p><a class="btn btn-cta" href="#" data-link="manual" data-i="help1_b"></a></div>
+    <div class="help-card"><h3 data-i="help2_t"></h3><p data-i="help2_d"></p><a class="btn btn-cta" href="#" data-link="whatsapp" data-i="help2_b"></a></div>
+  </div>
+  <div class="glow"></div>
+</section>
+
+<!-- APP -->
+<section class="app" id="app">
+  <div class="wrap">
+    <div class="app-card">
+      <div><h2 data-i="app_title"></h2><p data-i="app_text"></p></div>
+      <div class="stores">
+        <a class="store" href="#" data-link="appstore"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.2 3-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4zM14 5.2c.7-.8 1.2-2 1-3.2-1 0-2.2.7-3 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.3-.6 3-1.3z"/></svg><span><small data-i="app_ios"></small><b>App Store</b></span></a>
+        <a class="store" href="#" data-link="playstore"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#34a853" d="M3.6 2.2l10.4 10-10.4 9.6c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#fbbc04" d="M17.4 15.4L14 12.2l3.4-3.3 3.9 2.2c1.1.6 1.1 1.6 0 2.2z"/><path fill="#4285f4" d="M14 12.2l3.4 3.2-11.9 6.8c-.7.4-1.4.3-1.9-.4z"/><path fill="#ea4335" d="M3.6 2.2c.5-.6 1.2-.7 1.9-.3l11.9 7L14 12.2z"/></svg><span><small data-i="app_android"></small><b>Google Play</b></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK WITH US -->
+<section class="work" id="work">
+  <div class="wrap">
+    <h2 data-i="work_title"></h2>
+    <p class="lead" data-i="work_lead"></p>
+    <form class="card" id="workForm" novalidate>
+      <div class="field"><label for="fn"><span data-i="f_first"></span><span class="req">*</span></label><input id="fn" name="first_name" required autocomplete="given-name"></div>
+      <div class="field"><label for="ln"><span data-i="f_last"></span><span class="req">*</span></label><input id="ln" name="last_name" required autocomplete="family-name"></div>
+      <div class="field full"><label for="em"><span data-i="f_email"></span><span class="req">*</span></label><input id="em" name="email" type="email" required autocomplete="email"></div>
+      <div class="field full"><label for="ph"><span data-i="f_phone"></span><span class="req">*</span></label><input id="ph" name="phone" type="tel" required autocomplete="tel"></div>
+      <div class="field"><label for="ro"><span data-i="f_role"></span><span class="req">*</span></label><select id="ro" name="role" required></select></div>
+      <div class="field"><label for="li"><span data-i="f_license"></span></label><input id="li" name="license"></div>
+      <div class="field full"><label for="ex"><span data-i="f_exp"></span><span class="req">*</span></label><textarea id="ex" name="experience" required></textarea></div>
+      <label class="consent"><input type="checkbox" id="ok" name="consent" required><span data-i="f_consent"></span></label>
+      <div class="form-msg" id="formMsg" role="status"></div>
+      <div><button class="btn btn-cta" type="submit" data-i="f_send" style="font-weight:700"></button></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <svg class="logo"><use href="#logo"/></svg>
+        <ul class="contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5z"/><path d="M8.5 8c.2 3.4 3.6 7.2 7.5 7.5l1-1.6-2.2-1.2-1 1c-1.4-.6-2.6-1.8-3.2-3.2l1-1-1.1-2.2z" fill="currentColor" stroke="none"/></svg><a href="#" data-link="whatsapp" id="phoneTxt"></a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><path d="M3 6l9 7 9-7M3 18l6.5-6M21 18l-6.5-6"/></svg><a href="#" id="emailTxt"></a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg><span id="addrTxt"></span></li>
+        </ul>
+        <div class="socials">
+          <a href="#" data-link="instagram" aria-label="Instagram" style="background:#1d1d1d"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a>
+          <a href="#" data-link="facebook" aria-label="Facebook" style="background:#3b5998"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M13.2 21.9v-7.4h2.4l.4-2.8h-2.8V9.9c0-.8.3-1.4 1.4-1.4H16V6c-.3 0-1.2-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6v2.2H8v2.8h2.4v7.4z" fill="#3b5998"/></svg></a>
+          <a href="#" data-link="tiktok" aria-label="TikTok" style="background:#6b6f73"><svg viewBox="0 0 24 24" fill="#fff"><path d="M16.5 3c.4 2.2 1.8 3.6 4 3.8v3.1c-1.5 0-2.8-.4-4-1.2v6.1c0 3.4-2.6 5.7-5.6 5.7-3.1 0-5.4-2.4-5.4-5.4 0-3.3 2.8-5.8 6.3-5.3v3.2c-1.6-.4-3.2.6-3.2 2.1 0 1.2 1 2.2 2.2 2.2 1.4 0 2.4-1 2.4-2.6V3z"/></svg></a>
+        </div>
+      </div>
+      <nav aria-label="Footer"><ul>
+        <li><a href="#home" data-i="nav_home"></a></li>
+        <li><a href="#about" data-i="nav_about"></a></li>
+        <li><a href="#plans" data-i="nav_plans"></a></li>
+        <li><a href="#specialties" data-i="nav_spec"></a></li>
+        <li><a href="#patient" data-i="nav_patient"></a></li>
+        <li><a href="#help" data-i="nav_help"></a></li>
+      </ul></nav>
+    </div>
+    <div class="legal">
+      <a href="#" data-link="privacy" data-i="privacy"></a>
+      <span><span id="yr"></span> Dr. Ready · <span data-i="powered"></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONFIGURAÇÃO — troque aqui os links da plataforma Group4Care
+   ========================================================= */
+const CONFIG = {
+  links: {
+    login:      "https://app.group4care.com",
+    subscribe:  "https://app.group4care.com",
+    specialist: "https://app.group4care.com",
+    consult:    "https://app.group4care.com",
+    whatsapp:   "https://wa.me/13213219391",
+    manual:     "#",
+    appstore:   "#",
+    playstore:  "#",
+    instagram:  "#",
+    facebook:   "#",
+    tiktok:     "#",
+    privacy:    "#"
+  },
+  // Links dos planos (checkout na plataforma). Deixe "" para usar CONFIG.links.subscribe
+  planLinks: { individual:"", family:"", familyplus:"", business:"" },
+  phone:   "+1 (321) 321-9391",
+  email:   "contato@drready.com",
+  address: "P.O. Box: 783533, Winter Garden, FL 34778, USA",
+  // Endpoint que recebe o formulário "Trabalhe conosco" (JSON via POST). Vazio = só mostra confirmação.
+  formEndpoint: ""
+};
+
+const FLAGS = {
+  pt:'<svg viewBox="0 0 22 15"><rect width="22" height="15" fill="#009c3b"/><path d="M11 2l8 5.5-8 5.5-8-5.5z" fill="#ffdf00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/></svg>',
+  en:'<svg viewBox="0 0 22 15"><rect width="22" height="15" fill="#fff"/><g fill="#b22234"><rect width="22" height="1.15"/><rect y="2.3" width="22" height="1.15"/><rect y="4.6" width="22" height="1.15"/><rect y="6.9" width="22" height="1.15"/><rect y="9.2" width="22" height="1.15"/><rect y="11.5" width="22" height="1.15"/><rect y="13.8" width="22" height="1.2"/></g><rect width="9.5" height="8" fill="#3c3b6e"/></svg>',
+  es:'<svg viewBox="0 0 22 15"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.75" width="22" height="7.5" fill="#ffc400"/></svg>'
+};
+
+const T = {
+pt:{
+  _name:"Português", _html:"pt-BR",
+  topbar:"Selecione um país ou região para ver conteúdo adaptado à sua localização.",
+  nav_home:"Início", nav_about:"Sobre nós", nav_plans:"Planos", nav_spec:"Especialidades", nav_patient:"Área do Paciente", nav_help:"Ajuda", nav_work:"Trabalhe conosco", nav_app:"Baixe o app", nav_login:"Entrar",
+  hero_live:"Consulta ao vivo",
+  hero_title:'Sua saúde a um clique<span class="dot"></span> Médicos nos EUA, 24 horas por dia.',
+  hero_sub:"Fale com médicos que falam o seu idioma, entendem a sua cultura e estão prontos para cuidar de você, da sua família ou da sua empresa, sem sair de casa. E, quando o seu médico recomendar, conte com uma clínica parceira em Orlando com benefícios exclusivos.",
+  btn_subscribe:"Assine agora", btn_help_sign:"Preciso de ajuda para assinar",
+  about_title:"Cuidar da sua saúde não precisa ser complicado.",
+  about_p1:"Morar nos Estados Unidos traz muitas oportunidades, mas também o desafio de encontrar atendimento médico acessível, rápido e no seu idioma.",
+  about_p2:"A Dr. Ready nasceu para resolver isso. Somos uma plataforma de telemedicina com médicos que entendem o seu dia a dia, falam a sua língua e respeitam os seus valores.",
+  about_p3:"Em poucos cliques você agenda consultas, fala com um médico e recebe orientação direto pelo app — seja para um problema imediato, para acompanhar um tratamento ou para programas contínuos de saúde.",
+  about_p4:"<b>E quando precisar ver um médico pessoalmente,</b> a gente resolve: assinantes têm acesso a uma clínica parceira em Orlando, com consultas presenciais, exames e procedimentos com desconto exclusivo.",
+  chip_search:"Quero marcar uma consulta", chip1:"Agende em poucos cliques", chip2:"Suporte 24/7 no seu idioma", chip3:"Médicos brasileiros nos EUA",
+  checks:["Médicos americanos","Atendimento imediato, 24/7","Receitas válidas nas farmácias dos EUA","Atendimento em português, inglês e espanhol"],
+  border_title:"Cuidado ao atravessar fronteiras",
+  border_text:"Remédios e receitas trazidos de outro país nem sempre valem aqui. Fale com um médico licenciado nos EUA antes de se automedicar.",
+  svc_title:"Do cuidado imediato à prevenção contínua.",
+  svc_lead:"Seja para uma avaliação rápida, um acompanhamento estruturado ou um atendimento presencial, <b>a Dr. Ready tem uma solução pensada para você.</b>",
+  svc1_t:"Clínico geral 24/7", svc1_d:"Atendimento imediato e ilimitado, sem custo extra. Ideal para urgências do dia a dia ou dúvidas de saúde.",
+  svc2_t:"Especialistas sob demanda", svc2_d:"Acesse médicos de várias especialidades — como Ginecologia, Psiquiatria, Urologia, Endocrinologia, Cardiologia, Dermatologia (a partir de 14 anos), Medicina de Família, Neurologia, Psicologia e Nutrição — com valores acessíveis a partir de US$ 25.",
+  svc3_t:"Programas exclusivos de saúde", svc3_d1:"Emagrecimento: orientação médica e nutricional para metas realistas e sustentáveis.", svc3_d2:"Diabetes: acompanhamento contínuo, orientação personalizada e prevenção de complicações.",
+  svc4_t:"Atendimento presencial em Orlando", svc4_d:"Clínica parceira com consultas a US$ 50 e 20% de desconto em exames e procedimentos, sempre com encaminhamento do nosso clínico geral.",
+  btn_programs:"Conheça os programas de saúde",
+  steps_title:"Consultas médicas sem burocracia, em três passos simples.",
+  step1:"<b>Escolha seu plano:</b> individual, família ou empresa.",
+  step2:"<b>Solicite seu atendimento:</b> pelo app ou WhatsApp, quando precisar.",
+  step3:"<b>Fale com o médico:</b> receba atendimento, orientação e receitas, onde estiver.",
+  steps_note:"Todo o seu histórico médico fica salvo na plataforma, garantindo continuidade do cuidado e mais segurança clínica. <b>Se o seu médico recomendar atendimento presencial, ele encaminha você à nossa clínica parceira em Orlando, e tudo o que for feito lá entra no seu prontuário.</b>",
+  btn_start:"Quero começar hoje",
+  plan_ind:"Plano Individual", plan_fam:"Plano Família", plan_biz:"Plano Empresarial",
+  inp_title:'Atendimento presencial <em>em Orlando.</em>',
+  inp_text:"Quando o nosso clínico geral recomendar, você é encaminhado à clínica parceira em Orlando para consultas presenciais, exames e procedimentos com benefícios exclusivos para assinantes. E tudo entra no seu prontuário Dr. Ready.",
+  inp_partner:"EM PARCERIA COM",
+  st1:"Em exames, procedimentos e consultas pediátricas.", st2:"Consulta presencial com especialistas e Atenção Primária.", st3_u:"idiomas", st3:"Português, inglês e espanhol.", st4_u:"etapas", st4:"Consulta online → encaminhamento → agendamento autorizado → clínica.",
+  prof_title:"Porque cada perfil exige um cuidado sob medida.",
+  prof_side:"Individual ou em grupo, todos têm acesso a profissionais qualificados e a uma experiência acolhedora.",
+  prof1_t:"Para você:", prof1_d:"Consultas médicas ilimitadas, com praticidade e suporte para você.",
+  prof2_t:"Para sua família:", prof2_d:"Um só plano para cuidar de quem você ama, incluindo as crianças.",
+  prof3_t:"Para sua empresa:", prof3_d:"Saúde para a sua equipe, com gestão simples e relatórios de uso.",
+  btn_subscribe2:"Assine agora",
+  plans_title:"Planos acessíveis para cada necessidade.", per_month:"/mês",
+  plans:[
+    {id:"individual",icon:"person",name:"Plano Individual",price:"$29,90",btn:"Assinar individual",items:["Ideal para quem mora sozinho nos EUA e quer praticidade no dia a dia.","Consultas ilimitadas com clínico geral, 24/7","Acesso sob demanda a especialistas com valores acessíveis","Programas exclusivos de saúde (emagrecimento e diabetes)","Histórico médico integrado e digital","Atendimento presencial em Orlando com 20% OFF e consultas a US$ 50"]},
+    {id:"family",icon:"personplus",name:"Plano Família",price:"$49,90",btn:"Assinar plano família",items:["Mais saúde e tranquilidade para quem você mais ama.","1 titular + 3 dependentes","Cobertura para você e seus dependentes","Consultas ilimitadas com clínico geral para todos os incluídos","Acesso sob demanda a especialistas para cada membro da família","Atendimento presencial em Orlando com descontos para toda a família, incluindo pediatria","Programas de acompanhamento para condições específicas (ex.: emagrecimento e diabetes)","Gestão centralizada em um único plano","Atendimento humanizado e sem barreiras de comunicação"]},
+    {id:"familyplus",icon:"personplus",name:"Plano Família Plus",price:"$79,90",btn:"Assinar Família Plus",items:["Mais saúde e tranquilidade para quem você mais ama.","1 titular + 5 dependentes","Cobertura para você e seus dependentes","Consultas ilimitadas com clínico geral para todos os incluídos","Acesso sob demanda a especialistas para cada membro da família","Atendimento presencial em Orlando com descontos para toda a família, incluindo pediatria","Programas de acompanhamento para condições específicas (ex.: emagrecimento e diabetes)","Gestão centralizada em um único plano","Atendimento humanizado e sem barreiras de comunicação"]},
+    {id:"business",icon:"globe",name:"Plano Empresarial",price:"",btn:"Solicitar proposta empresarial",items:["Cuide da sua equipe com eficiência e responsabilidade.","Cobertura para colaboradores e dependentes","Programas corporativos de saúde (emagrecimento, diabetes, prevenção)","Clínica parceira em Orlando para check-ups e exames da equipe, com descontos","Relatórios de uso para apoiar a gestão da empresa","Suporte dedicado para RH e lideranças","Atendimento humanizado para todos os colaboradores"]}
+  ],
+  spec_title:"Especialidades",
+  spec_lead:"Clínico geral 24/7 incluso em todos os planos. Especialistas sob demanda, com valores a partir de US$ 25 por consulta.",
+  specs:["Clínico geral 24/7","Ginecologia","Psiquiatria","Urologia","Endocrinologia","Cardiologia","Dermatologia (14+)","Medicina de Família","Neurologia","Psicologia","Nutrição","Pediatria (presencial)"],
+  pa_title:"Área do Paciente",
+  pa_text:"Na Dr. Ready seguimos os padrões e protocolos médicos dos EUA, garantindo que todo atendimento seja seguro, válido e adequado ao contexto americano.",
+  pa_items:["Receitas digitais enviadas direto para a farmácia escolhida.","Pedidos de exames quando clinicamente necessário.","Encaminhamento para atendimento presencial em Orlando quando recomendado pelo seu médico.","Histórico integrado para continuidade do cuidado, incluindo as consultas presenciais."],
+  btn_specialist:"Agendar consulta com especialista", btn_consult:"Iniciar consulta clínica",
+  faq_title:"Perguntas frequentes",
+  faq:[
+    ["A Dr. Ready oferece atendimento presencial?","Sim. Quando o nosso clínico geral recomenda, você é encaminhado à clínica parceira em Orlando, com consultas a US$ 50 e 20% de desconto em exames e procedimentos."],
+    ["Como sou atendido na clínica?","Primeiro faça uma consulta online com o clínico geral. Se ele indicar atendimento presencial, emite o encaminhamento, nossa equipe autoriza o agendamento e você vai à clínica."],
+    ["Posso agendar direto com a clínica e ter o desconto?","Não. Os benefícios valem somente com o encaminhamento do nosso clínico geral, feito pela plataforma."],
+    ["O atendimento é mesmo em português?","Sim. Médicos e equipe de suporte atendem em português, inglês e espanhol."],
+    ["Quais sintomas o clínico geral atende?","Queixas do dia a dia como gripe, resfriado, febre, dor de garganta, alergias, infecção urinária, problemas de pele, dores e questões gástricas. Em emergências graves, ligue 911."],
+    ["O clínico geral pode prescrever, pedir exames, encaminhar para especialista e dar atestado?","Sim, sempre que houver indicação clínica."],
+    ["Como recebo minha receita?","A receita é digital e enviada direto para a farmácia que você escolher nos EUA."],
+    ["E se eu precisar de exames?","O médico emite o pedido pela plataforma. Você pode fazer os exames na clínica parceira em Orlando, com 20% de desconto."],
+    ["As especialidades estão incluídas no plano?","O clínico geral 24/7 é ilimitado e incluso. Especialistas são sob demanda, com valores a partir de US$ 25 por consulta."],
+    ["Quanto custam exames e procedimentos?","Assinantes têm 20% de desconto na tabela da clínica parceira. O valor é informado antes do agendamento."],
+    ["A consulta presencial de US$ 50 é a mesma que a consulta online com especialista?","Não. Os US$ 50 são da consulta presencial na clínica parceira em Orlando. A consulta online com especialista tem valor próprio, a partir de US$ 25."],
+    ["O que é feito na clínica entra no meu histórico?","Sim. Consultas, exames e procedimentos feitos na clínica parceira entram no seu prontuário Dr. Ready."],
+    ["Como agendo uma consulta com especialista?","Pelo app ou pelo WhatsApp, ou na Área do Paciente, no botão “Agendar consulta com especialista”."],
+    ["Quem pode ser incluído no plano família?","O titular e seus dependentes, como cônjuge e filhos: até 3 no Plano Família e até 5 no Família Plus."],
+    ["A Dr. Ready também atende empresas?","Sim. O Plano Empresarial cobre colaboradores e dependentes, com relatórios de uso e suporte dedicado ao RH."],
+    ["Este plano é um seguro saúde?","Não. É uma assinatura de serviços de telemedicina e benefícios. Não substitui o seguro saúde e não cobre internações ou emergências."],
+    ["Existe período mínimo de permanência?","Não há fidelidade. Você pode cancelar quando quiser."],
+    ["O pagamento é mensal?","Sim, a cobrança é mensal no cartão de crédito."]
+  ],
+  help1_t:"Manual do Paciente", help1_d:"Veja o passo a passo para acessar a plataforma, solicitar atendimento e usar os principais recursos da Dr. Ready.", help1_b:"Manual do Paciente",
+  help2_t:"Suporte Técnico", help2_d:"Problemas para acessar sua conta, usar o app ou fazer uma solicitação? Fale com o suporte técnico.", help2_b:"Falar com o suporte",
+  app_title:"Baixe o app Dr. Ready", app_text:"Consultas, receitas e todo o seu histórico na palma da mão.", app_ios:"Baixar na", app_android:"Disponível no",
+  work_title:"Trabalhe conosco", work_lead:"Preencha o formulário abaixo. Nossa equipe vai analisar suas informações.",
+  f_first:"Nome", f_last:"Sobrenome", f_email:"E-mail", f_phone:"Telefone/WhatsApp", f_role:"Área de atuação", f_license:"Licença (estado e número)",
+  roles:["Selecione…","Médico(a)","Psicólogo(a)","Nutricionista","Enfermagem","Atendimento / Suporte","Comercial","Outra"],
+  f_exp:"Conte um pouco sobre sua experiência e seu interesse em trabalhar com a Dr. Ready.",
+  f_consent:"Concordo em ser contatado(a) pela Dr. Ready sobre minha solicitação.",
+  f_send:"Enviar", f_ok:"Recebemos seus dados. Nossa equipe entrará em contato em breve.", f_err:"Preencha todos os campos obrigatórios e aceite o contato.", f_fail:"Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.",
+  privacy:"Política de Privacidade", powered:"Tecnologia Group4Care"
+},
+en:{
+  _name:"English", _html:"en",
+  topbar:"Select a different country or region to view content tailored to your location.",
+  nav_home:"Home", nav_about:"About Us", nav_plans:"Plans", nav_spec:"Specialties", nav_patient:"Patient Area", nav_help:"Help", nav_work:"Work with us", nav_app:"Download app", nav_login:"Login",
+  hero_live:"Live visit",
+  hero_title:'Your health just a click away<span class="dot"></span> U.S. doctors, 24 hours a day.',
+  hero_sub:"Connect with doctors who speak your language, understand your culture, and are ready to care for you, your family, or your company, without leaving home. And when your doctor recommends it, you can count on a partner clinic in Orlando with exclusive benefits.",
+  btn_subscribe:"Subscribe Now", btn_help_sign:"I need help signing up",
+  about_title:"Taking care of your health doesn't have to be complicated.",
+  about_p1:"Living in the United States brings many opportunities, but also the challenge of finding medical care that is accessible, prompt, and available in your language.",
+  about_p2:"Dr. Ready was created to solve this. We are a telemedicine platform featuring doctors who understand your daily life, speak your language, and respect your values.",
+  about_p3:"With just a few clicks, you can schedule appointments, consult with a doctor, and receive guidance directly through the app — whether for an immediate ailment, ongoing treatment monitoring, or continuous health programs.",
+  about_p4:"<b>And when you need to see a doctor in person,</b> we've got you covered: subscribers have access to a partner clinic in Orlando, with in-person visits, lab tests and procedures at an exclusive discount.",
+  chip_search:"I want to make an appointment", chip1:"Schedule in just a few clicks", chip2:"24/7 support in your language", chip3:"Brazilian doctors in the USA",
+  checks:["American doctors","Immediate service, 24/7","Prescriptions valid at pharmacies in the USA","Care in Portuguese, English and Spanish"],
+  border_title:"Be careful when crossing borders",
+  border_text:"Medications and prescriptions brought from another country are not always valid here. Talk to a U.S.-licensed doctor before self-medicating.",
+  svc_title:"From immediate care to ongoing prevention.",
+  svc_lead:"Whether you need a quick assessment, structured follow-up, or in-person care, <b>Dr. Ready has a solution designed for you.</b>",
+  svc1_t:"24/7 General Practitioner", svc1_d:"Immediate, unlimited assistance at no extra cost. Ideal for everyday emergencies or health-related questions.",
+  svc2_t:"On-demand experts", svc2_d:"Access doctors across various specialties—such as Gynecology, Psychiatry, Urology, Endocrinology, Cardiology, Dermatology (ages 14+), Family Medicine, Neurology, Psychology, and Nutrition at affordable rates starting from $25.",
+  svc3_t:"Exclusive health programs", svc3_d1:"Weight loss: medical and nutritional guidance for realistic, sustainable goals.", svc3_d2:"Diabetes: continuous monitoring, personalized advice, and prevention of complications.",
+  svc4_t:"In-person care in Orlando", svc4_d:"Partner clinic with US$ 50 visits and 20% off lab tests and procedures, always with a referral from our general practitioner.",
+  btn_programs:"Discover the health programs",
+  steps_title:"Medical consultations without the red tape, in three simple steps.",
+  step1:"<b>Choose your plan:</b> individual, family, or business.",
+  step2:"<b>Request your appointment:</b> through the app or WhatsApp, whenever you need it.",
+  step3:"<b>Connect with the doctor:</b> get care, guidance, and prescriptions, wherever you are.",
+  steps_note:"Your entire medical history is saved on the platform, ensuring continuity of care and greater clinical safety. <b>If your doctor recommends in-person care, they will refer you to our partner clinic in Orlando, and everything done there is added to your medical record.</b>",
+  btn_start:"I want to start today",
+  plan_ind:"Individual Plan", plan_fam:"Family Plan", plan_biz:"Business Plan",
+  inp_title:'In-person care <em>in Orlando.</em>',
+  inp_text:"When our general practitioner recommends it, you are referred to our partner clinic in Orlando for in-person visits, lab tests and procedures with exclusive benefits for subscribers. And everything is added to your Dr. Ready medical record.",
+  inp_partner:"IN PARTNERSHIP WITH",
+  st1:"On lab tests, procedures and pediatric visits.", st2:"In-person visit with specialists and Primary Care.", st3_u:"languages", st3:"Portuguese, English and Spanish.", st4_u:"steps", st4:"Online visit → referral → authorized scheduling → clinic.",
+  prof_title:"Because every profile requires tailored care.",
+  prof_side:"Whether individual or group-based, everyone has access to qualified professionals and a welcoming experience.",
+  prof1_t:"For you:", prof1_d:"Unlimited medical consultations, with convenience and support for you.",
+  prof2_t:"For your family:", prof2_d:"One plan to care for the people you love, kids included.",
+  prof3_t:"For your business:", prof3_d:"Health for your team, with simple management and usage reports.",
+  btn_subscribe2:"Subscribe now",
+  plans_title:"Affordable plans for every need.", per_month:"/mo",
+  plans:[
+    {id:"individual",icon:"person",name:"Individual Plan",price:"$29,90",btn:"Subscribe Individually",items:["Ideal for those living alone in the US who need everyday convenience.","Unlimited consultations with a general practitioner, 24/7","On-demand access to specialists at affordable rates","Exclusive health programs (weight loss and diabetes)","Integrated and digital medical history","In-person care in Orlando with 20% OFF and US$ 50 visits"]},
+    {id:"family",icon:"personplus",name:"Family Plan",price:"$49,90",btn:"Subscribe Family Plan",items:["Better health and peace of mind for those you love most.","1 primary holder + 3 dependents","Coverage for you and your dependents","Unlimited general practitioner consultations for all included members.","On-demand access to specialists for every family member","In-person care in Orlando with discounts for the whole family, including pediatrics","Monitoring programs for specific conditions (e.g., weight loss and diabetes)","Centralized management within a single plan","Humanized service without communication barriers"]},
+    {id:"familyplus",icon:"personplus",name:"Family Plus Plan",price:"$79,90",btn:"Subscribe Family Plus",items:["Better health and peace of mind for those you love most.","1 primary holder + 5 dependents","Coverage for you and your dependents","Unlimited general practitioner consultations for all included members.","On-demand access to specialists for every family member","In-person care in Orlando with discounts for the whole family, including pediatrics","Monitoring programs for specific conditions (e.g., weight loss and diabetes)","Centralized management within a single plan","Humanized service without communication barriers"]},
+    {id:"business",icon:"globe",name:"Business Plan",price:"",btn:"Request a business proposal",items:["Taking care of your team with efficiency and responsibility.","Coverage for employees and dependents","Corporate health programs (weight loss, diabetes, prevention)","Partner clinic in Orlando for team check-ups and lab tests, with discounts","Usage reports to support company management","Dedicated support for HR and team leaders","Humanized care for all team members"]}
+  ],
+  spec_title:"Specialties",
+  spec_lead:"24/7 general practitioner included in every plan. On-demand specialists, starting from US$ 25 per visit.",
+  specs:["24/7 General Practitioner","Gynecology","Psychiatry","Urology","Endocrinology","Cardiology","Dermatology (14+)","Family Medicine","Neurology","Psychology","Nutrition","Pediatrics (in person)"],
+  pa_title:"Patient Area",
+  pa_text:"At Dr. Ready, we follow U.S. medical standards and protocols, ensuring that all care is safe, valid, and tailored to the U.S. context.",
+  pa_items:["Digital prescriptions sent directly to the designated pharmacy.","Test orders when clinically necessary.","Referral to in-person care in Orlando when recommended by your doctor.","Integrated history for continuity of care, including in-person visits."],
+  btn_specialist:"Schedule an Appointment with a Specialist", btn_consult:"Start Clinical Consultation",
+  faq_title:"Frequently Asked Questions",
+  faq:[
+    ["Does Dr. Ready offer in-person care?","Yes. When our general practitioner recommends it, you are referred to our partner clinic in Orlando, with US$ 50 visits and 20% off lab tests and procedures."],
+    ["How do I get seen at the clinic?","Start with an online visit with the general practitioner. If they recommend in-person care, they issue a referral, our team authorizes the appointment, and you go to the clinic."],
+    ["Can I book directly with the clinic and get the discount?","No. The benefits only apply with a referral from our general practitioner, made through the platform."],
+    ["Is the service really in English?","Yes. Doctors and support staff serve patients in English, Portuguese and Spanish."],
+    ["What symptoms does the general practitioner treat?","Everyday complaints such as flu, colds, fever, sore throat, allergies, urinary infections, skin issues, aches and stomach problems. In a serious emergency, call 911."],
+    ["Can the general practitioner prescribe medication, order tests, refer to a specialist, and issue a medical note?","Yes, whenever clinically indicated."],
+    ["How do I receive my prescription?","Prescriptions are digital and sent directly to the pharmacy of your choice in the US."],
+    ["What if I need lab tests?","Your doctor issues the order through the platform. You can do the tests at our partner clinic in Orlando with 20% off."],
+    ["Are specialties included in the plan?","The 24/7 general practitioner is unlimited and included. Specialists are on demand, starting from US$ 25 per visit."],
+    ["How much do lab tests and procedures cost?","Subscribers get 20% off the partner clinic's price list. The price is shared before scheduling."],
+    ["Is the US$ 50 in-person visit the same as the online specialist visit?","No. The US$ 50 is for the in-person visit at our partner clinic in Orlando. Online specialist visits are priced separately, starting from US$ 25."],
+    ["Is what's done at the clinic added to my history?","Yes. Visits, tests and procedures at the partner clinic are added to your Dr. Ready medical record."],
+    ["How do I schedule an appointment with a Specialist?","Through the app or WhatsApp, or in the Patient Area using the “Schedule an Appointment with a Specialist” button."],
+    ["Who can be included in the family plan?","The primary holder and their dependents, such as a spouse and children: up to 3 on the Family Plan and up to 5 on Family Plus."],
+    ["Does Dr. Ready also serve businesses?","Yes. The Business Plan covers employees and dependents, with usage reports and dedicated HR support."],
+    ["Is this plan health insurance?","No. It is a subscription to telemedicine services and benefits. It does not replace health insurance and does not cover hospitalization or emergencies."],
+    ["Is there a minimum commitment period?","There is no minimum commitment. You can cancel at any time."],
+    ["Is payment charged monthly?","Yes, it is billed monthly to your credit card."]
+  ],
+  help1_t:"Patient Manual", help1_d:"Check the step-by-step guide to access the platform, request care, and use the key features of Dr. Ready.", help1_b:"Patient Manual",
+  help2_t:"Technical Support", help2_d:"Having trouble accessing your account, using the app, or making an inquiry? Contact technical support.", help2_b:"Contact support",
+  app_title:"Download the Dr. Ready app", app_text:"Visits, prescriptions and your full history in the palm of your hand.", app_ios:"Download on the", app_android:"Get it on",
+  work_title:"Work with us", work_lead:"Fill out the form below. Our team will review your information.",
+  f_first:"First Name", f_last:"Last Name", f_email:"Email", f_phone:"Phone/WhatsApp", f_role:"Area of practice", f_license:"License (state and number)",
+  roles:["Select…","Physician","Psychologist","Nutritionist","Nursing","Customer support","Sales","Other"],
+  f_exp:"Tell us a little about your experience and interest in working with Dr. Ready.",
+  f_consent:"I agree to be contacted by Dr. Ready regarding my request.",
+  f_send:"Send", f_ok:"We received your information. Our team will contact you soon.", f_err:"Please fill in all required fields and accept to be contacted.", f_fail:"We couldn't send it right now. Please try again or reach us on WhatsApp.",
+  privacy:"Privacy Policy", powered:"Powered by Group4Care"
+},
+es:{
+  _name:"Español", _html:"es",
+  topbar:"Selecciona otro país o región para ver contenido adaptado a tu ubicación.",
+  nav_home:"Inicio", nav_about:"Nosotros", nav_plans:"Planes", nav_spec:"Especialidades", nav_patient:"Área del Paciente", nav_help:"Ayuda", nav_work:"Trabaja con nosotros", nav_app:"Descarga la app", nav_login:"Ingresar",
+  hero_live:"Consulta en vivo",
+  hero_title:'Tu salud a un clic<span class="dot"></span> Médicos en EE. UU., las 24 horas.',
+  hero_sub:"Conéctate con médicos que hablan tu idioma, entienden tu cultura y están listos para cuidarte a ti, a tu familia o a tu empresa, sin salir de casa. Y cuando tu médico lo recomiende, cuenta con una clínica asociada en Orlando con beneficios exclusivos.",
+  btn_subscribe:"Suscríbete ahora", btn_help_sign:"Necesito ayuda para suscribirme",
+  about_title:"Cuidar tu salud no tiene por qué ser complicado.",
+  about_p1:"Vivir en Estados Unidos trae muchas oportunidades, pero también el desafío de encontrar atención médica accesible, rápida y en tu idioma.",
+  about_p2:"Dr. Ready nació para resolverlo. Somos una plataforma de telemedicina con médicos que entienden tu día a día, hablan tu idioma y respetan tus valores.",
+  about_p3:"Con unos pocos clics agendas citas, consultas con un médico y recibes orientación directamente en la app — ya sea por una molestia inmediata, el seguimiento de un tratamiento o programas de salud continuos.",
+  about_p4:"<b>Y cuando necesites ver a un médico en persona,</b> te cubrimos: los suscriptores tienen acceso a una clínica asociada en Orlando, con consultas presenciales, análisis y procedimientos con descuento exclusivo.",
+  chip_search:"Quiero agendar una cita", chip1:"Agenda en pocos clics", chip2:"Soporte 24/7 en tu idioma", chip3:"Médicos brasileños en EE. UU.",
+  checks:["Médicos estadounidenses","Atención inmediata, 24/7","Recetas válidas en farmacias de EE. UU.","Atención en portugués, inglés y español"],
+  border_title:"Cuidado al cruzar fronteras",
+  border_text:"Los medicamentos y recetas traídos de otro país no siempre son válidos aquí. Habla con un médico con licencia en EE. UU. antes de automedicarte.",
+  svc_title:"De la atención inmediata a la prevención continua.",
+  svc_lead:"Ya sea una evaluación rápida, un seguimiento estructurado o atención presencial, <b>Dr. Ready tiene una solución pensada para ti.</b>",
+  svc1_t:"Médico general 24/7", svc1_d:"Atención inmediata e ilimitada sin costo adicional. Ideal para urgencias cotidianas o dudas de salud.",
+  svc2_t:"Especialistas a demanda", svc2_d:"Accede a médicos de varias especialidades —como Ginecología, Psiquiatría, Urología, Endocrinología, Cardiología, Dermatología (desde 14 años), Medicina Familiar, Neurología, Psicología y Nutrición— a precios accesibles desde US$ 25.",
+  svc3_t:"Programas de salud exclusivos", svc3_d1:"Pérdida de peso: orientación médica y nutricional para metas realistas y sostenibles.", svc3_d2:"Diabetes: monitoreo continuo, orientación personalizada y prevención de complicaciones.",
+  svc4_t:"Atención presencial en Orlando", svc4_d:"Clínica asociada con consultas a US$ 50 y 20% de descuento en análisis y procedimientos, siempre con remisión de nuestro médico general.",
+  btn_programs:"Conoce los programas de salud",
+  steps_title:"Consultas médicas sin trámites, en tres pasos simples.",
+  step1:"<b>Elige tu plan:</b> individual, familiar o empresarial.",
+  step2:"<b>Solicita tu cita:</b> por la app o WhatsApp, cuando lo necesites.",
+  step3:"<b>Conéctate con el médico:</b> recibe atención, orientación y recetas, donde estés.",
+  steps_note:"Todo tu historial médico queda guardado en la plataforma, garantizando continuidad de la atención y mayor seguridad clínica. <b>Si tu médico recomienda atención presencial, te remitirá a nuestra clínica asociada en Orlando, y todo lo que se haga allí se agrega a tu historia clínica.</b>",
+  btn_start:"Quiero empezar hoy",
+  plan_ind:"Plan Individual", plan_fam:"Plan Familiar", plan_biz:"Plan Empresarial",
+  inp_title:'Atención presencial <em>en Orlando.</em>',
+  inp_text:"Cuando nuestro médico general lo recomienda, se te remite a la clínica asociada en Orlando para consultas presenciales, análisis y procedimientos con beneficios exclusivos para suscriptores. Y todo se agrega a tu historia clínica Dr. Ready.",
+  inp_partner:"EN ALIANZA CON",
+  st1:"En análisis, procedimientos y consultas pediátricas.", st2:"Consulta presencial con especialistas y Atención Primaria.", st3_u:"idiomas", st3:"Portugués, inglés y español.", st4_u:"pasos", st4:"Consulta online → remisión → cita autorizada → clínica.",
+  prof_title:"Porque cada perfil requiere un cuidado a medida.",
+  prof_side:"Ya sea individual o en grupo, todos tienen acceso a profesionales calificados y a una experiencia acogedora.",
+  prof1_t:"Para ti:", prof1_d:"Consultas médicas ilimitadas, con comodidad y apoyo para ti.",
+  prof2_t:"Para tu familia:", prof2_d:"Un solo plan para cuidar a quienes amas, incluidos los niños.",
+  prof3_t:"Para tu empresa:", prof3_d:"Salud para tu equipo, con gestión simple e informes de uso.",
+  btn_subscribe2:"Suscríbete ahora",
+  plans_title:"Planes accesibles para cada necesidad.", per_month:"/mes",
+  plans:[
+    {id:"individual",icon:"person",name:"Plan Individual",price:"$29,90",btn:"Suscribirme individual",items:["Ideal para quienes viven solos en EE. UU. y buscan practicidad en el día a día.","Consultas ilimitadas con médico general, 24/7","Acceso a demanda a especialistas a precios accesibles","Programas de salud exclusivos (pérdida de peso y diabetes)","Historial médico integrado y digital","Atención presencial en Orlando con 20% OFF y consultas a US$ 50"]},
+    {id:"family",icon:"personplus",name:"Plan Familiar",price:"$49,90",btn:"Suscribir plan familiar",items:["Más salud y tranquilidad para quienes más amas.","1 titular + 3 dependientes","Cobertura para ti y tus dependientes","Consultas ilimitadas con médico general para todos los incluidos","Acceso a demanda a especialistas para cada miembro de la familia","Atención presencial en Orlando con descuentos para toda la familia, incluida pediatría","Programas de seguimiento para condiciones específicas (ej.: pérdida de peso y diabetes)","Gestión centralizada en un solo plan","Atención humanizada y sin barreras de comunicación"]},
+    {id:"familyplus",icon:"personplus",name:"Plan Familiar Plus",price:"$79,90",btn:"Suscribir Familiar Plus",items:["Más salud y tranquilidad para quienes más amas.","1 titular + 5 dependientes","Cobertura para ti y tus dependientes","Consultas ilimitadas con médico general para todos los incluidos","Acceso a demanda a especialistas para cada miembro de la familia","Atención presencial en Orlando con descuentos para toda la familia, incluida pediatría","Programas de seguimiento para condiciones específicas (ej.: pérdida de peso y diabetes)","Gestión centralizada en un solo plan","Atención humanizada y sin barreras de comunicación"]},
+    {id:"business",icon:"globe",name:"Plan Empresarial",price:"",btn:"Solicitar propuesta empresarial",items:["Cuida a tu equipo con eficiencia y responsabilidad.","Cobertura para colaboradores y dependientes","Programas de salud corporativos (pérdida de peso, diabetes, prevención)","Clínica asociada en Orlando para chequeos y análisis del equipo, con descuentos","Informes de uso para apoyar la gestión de la empresa","Soporte dedicado para RR. HH. y líderes","Atención humanizada para todo el equipo"]}
+  ],
+  spec_title:"Especialidades",
+  spec_lead:"Médico general 24/7 incluido en todos los planes. Especialistas a demanda, desde US$ 25 por consulta.",
+  specs:["Médico general 24/7","Ginecología","Psiquiatría","Urología","Endocrinología","Cardiología","Dermatología (14+)","Medicina Familiar","Neurología","Psicología","Nutrición","Pediatría (presencial)"],
+  pa_title:"Área del Paciente",
+  pa_text:"En Dr. Ready seguimos los estándares y protocolos médicos de EE. UU., garantizando que toda la atención sea segura, válida y adaptada al contexto estadounidense.",
+  pa_items:["Recetas digitales enviadas directamente a la farmacia elegida.","Órdenes de análisis cuando sea clínicamente necesario.","Remisión a atención presencial en Orlando cuando tu médico lo recomiende.","Historial integrado para continuidad de la atención, incluidas las consultas presenciales."],
+  btn_specialist:"Agendar cita con un especialista", btn_consult:"Iniciar consulta clínica",
+  faq_title:"Preguntas frecuentes",
+  faq:[
+    ["¿Dr. Ready ofrece atención presencial?","Sí. Cuando nuestro médico general lo recomienda, se te remite a la clínica asociada en Orlando, con consultas a US$ 50 y 20% de descuento en análisis y procedimientos."],
+    ["¿Cómo me atienden en la clínica?","Primero haz una consulta online con el médico general. Si recomienda atención presencial, emite la remisión, nuestro equipo autoriza la cita y vas a la clínica."],
+    ["¿Puedo agendar directamente con la clínica y obtener el descuento?","No. Los beneficios solo aplican con la remisión de nuestro médico general, hecha en la plataforma."],
+    ["¿La atención es realmente en español?","Sí. Médicos y equipo de soporte atienden en español, portugués e inglés."],
+    ["¿Qué síntomas trata el médico general?","Molestias cotidianas como gripe, resfriado, fiebre, dolor de garganta, alergias, infección urinaria, problemas de piel, dolores y malestar estomacal. En una emergencia grave, llama al 911."],
+    ["¿El médico general puede recetar, pedir análisis, remitir a un especialista y emitir un certificado médico?","Sí, siempre que haya indicación clínica."],
+    ["¿Cómo recibo mi receta?","La receta es digital y se envía directamente a la farmacia que elijas en EE. UU."],
+    ["¿Y si necesito análisis?","Tu médico emite la orden en la plataforma. Puedes hacerlos en la clínica asociada en Orlando con 20% de descuento."],
+    ["¿Las especialidades están incluidas en el plan?","El médico general 24/7 es ilimitado e incluido. Los especialistas son a demanda, desde US$ 25 por consulta."],
+    ["¿Cuánto cuestan los análisis y procedimientos?","Los suscriptores tienen 20% de descuento sobre la lista de precios de la clínica asociada. El valor se informa antes de agendar."],
+    ["¿La consulta presencial de US$ 50 es igual a la consulta online con especialista?","No. Los US$ 50 son de la consulta presencial en la clínica asociada en Orlando. La consulta online con especialista tiene su propio valor, desde US$ 25."],
+    ["¿Lo que se hace en la clínica se agrega a mi historial?","Sí. Consultas, análisis y procedimientos en la clínica asociada se agregan a tu historia clínica Dr. Ready."],
+    ["¿Cómo agendo una cita con un especialista?","Por la app o WhatsApp, o en el Área del Paciente con el botón “Agendar cita con un especialista”."],
+    ["¿Quién puede incluirse en el plan familiar?","El titular y sus dependientes, como cónyuge e hijos: hasta 3 en el Plan Familiar y hasta 5 en el Familiar Plus."],
+    ["¿Dr. Ready también atiende a empresas?","Sí. El Plan Empresarial cubre colaboradores y dependientes, con informes de uso y soporte dedicado a RR. HH."],
+    ["¿Este plan es un seguro médico?","No. Es una suscripción a servicios de telemedicina y beneficios. No reemplaza un seguro médico ni cubre hospitalizaciones o emergencias."],
+    ["¿Hay un período mínimo de permanencia?","No hay permanencia mínima. Puedes cancelar cuando quieras."],
+    ["¿El pago es mensual?","Sí, el cobro es mensual a tu tarjeta de crédito."]
+  ],
+  help1_t:"Manual del Paciente", help1_d:"Consulta la guía paso a paso para acceder a la plataforma, solicitar atención y usar las funciones principales de Dr. Ready.", help1_b:"Manual del Paciente",
+  help2_t:"Soporte Técnico", help2_d:"¿Problemas para acceder a tu cuenta, usar la app o hacer una solicitud? Contacta al soporte técnico.", help2_b:"Contactar soporte",
+  app_title:"Descarga la app Dr. Ready", app_text:"Consultas, recetas y todo tu historial en la palma de tu mano.", app_ios:"Descárgala en", app_android:"Disponible en",
+  work_title:"Trabaja con nosotros", work_lead:"Completa el formulario. Nuestro equipo revisará tu información.",
+  f_first:"Nombre", f_last:"Apellido", f_email:"Correo electrónico", f_phone:"Teléfono/WhatsApp", f_role:"Área de actuación", f_license:"Licencia (estado y número)",
+  roles:["Selecciona…","Médico(a)","Psicólogo(a)","Nutricionista","Enfermería","Atención / Soporte","Comercial","Otra"],
+  f_exp:"Cuéntanos un poco sobre tu experiencia y tu interés en trabajar con Dr. Ready.",
+  f_consent:"Acepto ser contactado(a) por Dr. Ready sobre mi solicitud.",
+  f_send:"Enviar", f_ok:"Recibimos tus datos. Nuestro equipo te contactará pronto.", f_err:"Completa todos los campos obligatorios y acepta ser contactado.", f_fail:"No pudimos enviarlo ahora. Inténtalo de nuevo o escríbenos por WhatsApp.",
+  privacy:"Política de Privacidad", powered:"Tecnología Group4Care"
+}};
+
+let lang = "pt";
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function linkFor(key){ return CONFIG.links[key] || "#"; }
+
+function render(){
+  const d = T[lang];
+  document.documentElement.lang = d._html;
+  document.querySelectorAll("[data-i]").forEach(el => { const v = d[el.dataset.i]; if (v !== undefined) el.innerHTML = v; });
+  $("#curLang").textContent = d._name;
+  $("#curFlag").innerHTML = FLAGS[lang];
+  $("#langMenu").innerHTML = Object.keys(T).map(k =>
+    `<button role="menuitem" data-lang="${k}" aria-current="${k===lang}"><span class="flag">${FLAGS[k]}</span>${T[k]._name}</button>`).join("");
+
+  $("#checkList").innerHTML = d.checks.map(c => `<li><svg class="badge"><use href="#seal"/></svg>${esc(c)}</li>`).join("");
+
+  $("#planGrid").innerHTML = d.plans.map(p => {
+    const href = CONFIG.planLinks[p.id] || (p.id === "business" ? linkFor("whatsapp") : linkFor("subscribe"));
+    const isBiz = p.id === "business";
+    return `<div class="plan${isBiz ? " biz" : ""}">
+      <svg class="pi"><use href="#${p.icon}"/></svg>
+      <h3>${esc(p.name)}</h3>
+      ${p.price ? `<div class="price">${p.price}<small>${d.per_month}</small></div>` : ""}
+      <ul>${p.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+      <a class="btn ${isBiz ? "btn-dark" : "btn-white"}" href="${esc(href)}" target="_blank" rel="noopener">${esc(p.btn)}</a>
+    </div>`;
+  }).join("");
+
+  $("#specGrid").innerHTML = d.specs.map((s, i) =>
+    `<div class="sp${i===0 ? " gp" : ""}"><i>${i===0 ? "24h" : esc(s.trim()[0])}</i>${esc(s)}</div>`).join("");
+
+  $("#paList").innerHTML = d.pa_items.map(i => `<li><svg><use href="#check"/></svg>${esc(i)}</li>`).join("");
+
+  const half = Math.ceil(d.faq.length / 2);
+  const faqHtml = arr => arr.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
+  $("#faqA").innerHTML = faqHtml(d.faq.slice(0, half));
+  $("#faqB").innerHTML = faqHtml(d.faq.slice(half));
+
+  $("#ro").innerHTML = d.roles.map((r, i) => `<option value="${i===0 ? "" : esc(r)}">${esc(r)}</option>`).join("");
+
+  document.querySelectorAll("[data-link]").forEach(a => {
+    a.href = linkFor(a.dataset.link);
+    if (/^https?:/.test(a.href) && !a.href.startsWith(location.origin + location.pathname)) { a.target = "_blank"; a.rel = "noopener"; }
+  });
+  $("#phoneTxt").textContent = CONFIG.phone;
+  $("#emailTxt").textContent = CONFIG.email;
+  $("#emailTxt").href = "mailto:" + CONFIG.email;
+  $("#addrTxt").textContent = CONFIG.address;
+  $("#yr").textContent = "© " + new Date().getFullYear();
+  $("#formMsg").className = "form-msg";
+}
+
+function setLang(l){
+  if (!T[l]) return;
+  lang = l;
+  try { localStorage.setItem("drready_lang", l); } catch(e) {}
+  render();
+}
+
+/* idioma inicial: salvo > navegador > português */
+(function init(){
+  let saved = null;
+  try { saved = localStorage.getItem("drready_lang"); } catch(e) {}
+  const nav = (navigator.language || "pt").slice(0,2).toLowerCase();
+  lang = T[saved] ? saved : (T[nav] ? nav : "pt");
+  render();
+})();
+
+/* menu de idiomas */
+const langBtn = $("#langBtn"), langMenu = $("#langMenu");
+langBtn.addEventListener("click", e => { e.stopPropagation(); const o = langMenu.classList.toggle("open"); langBtn.setAttribute("aria-expanded", o); });
+langMenu.addEventListener("click", e => { const b = e.target.closest("[data-lang]"); if (b) { setLang(b.dataset.lang); langMenu.classList.remove("open"); } });
+document.addEventListener("click", () => langMenu.classList.remove("open"));
+
+/* menu mobile */
+$("#burger").addEventListener("click", () => $("#menu").classList.toggle("open"));
+$("#menu").addEventListener("click", e => { if (e.target.closest("a")) $("#menu").classList.remove("open"); });
+
+/* formulário Trabalhe conosco */
+$("#workForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, msg = $("#formMsg"), d = T[lang];
+  const ok = [...f.querySelectorAll("[required]")].every(el => el.type === "checkbox" ? el.checked : el.value.trim() && el.checkValidity());
+  if (!ok) { msg.className = "form-msg err"; msg.textContent = d.f_err; return; }
+  const data = Object.fromEntries(new FormData(f).entries());
+  data.language = lang; data.source = "drready-site";
+  if (CONFIG.formEndpoint) {
+    try {
+      const r = await fetch(CONFIG.formEndpoint, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error(r.status);
+    } catch(err) { msg.className = "form-msg err"; msg.textContent = d.f_fail; return; }
+  }
+  msg.className = "form-msg ok"; msg.textContent = d.f_ok; f.reset();
+});
+</script>
+</body>
+</html>
